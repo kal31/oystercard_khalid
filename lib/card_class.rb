@@ -25,12 +25,12 @@ class Card < Barrier
 
     end
 
-    def sign_into_barrier
+    def touch_into_barrier
         if balance < MINIMUM_BALANCE
-            sign_out
+            touch_out
             return in_journey?
         elsif balance >= MINIMUM_BALANCE
-            sign_in
+            touch_in
             return in_journey?  
         end   
         

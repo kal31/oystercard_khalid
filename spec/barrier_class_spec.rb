@@ -6,12 +6,12 @@ RSpec.describe Barrier do
     end
 
     it "touch in card on the barrier" do
-        @barrier_test.sign_in
+        @barrier_test.touch_in
         expect(@barrier_test.in_journey?). to eq (true)
     end
 
     it "touch out card on the barrier" do
-        @barrier_test.sign_out
+        @barrier_test.touch_out
         expect(@barrier_test.in_journey?). to eq (false)
     end
 

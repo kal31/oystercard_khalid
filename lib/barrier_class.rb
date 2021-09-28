@@ -1,16 +1,18 @@
 
 
 class Barrier 
+
+
     def initialize
         @journey = false
     end    
 
-    def sign_in
+    def touch_in
          @journey = true
          return      
     end     
 
-    def sign_out
+    def touch_out
         @journey = false
         return
     end  
