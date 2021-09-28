@@ -1,8 +1,10 @@
 require 'card_class'
+require 'barrier_class'
 
 RSpec.describe Card do
     before(:each) do
         @my_oystercard_a = Card.new(10)
+        @my_oystercard_b = Card.new(0)
     end
 
        
@@ -19,9 +21,16 @@ RSpec.describe Card do
     end
 
     it "deduct payment from my balance" do
+        
         expect(@my_oystercard_a.deduct(5)). to eq (5)
     end
     
+    it "throws an error if a card with insufficient balance is signed in" do
+
+        @my_oystercard_b.sign_in
+
+        expect(@my_oystercard_b.in_journey?). to eq (false)
+    end
 
    
 end

@@ -1,7 +1,9 @@
+require 'barrier_class'
 class Card
 
     attr_reader :balance
     TOP_UP_LIMIT = 90
+    MINIMUM_BALANCE = 1
 
     def initialize(starting_balance)
         @balance = starting_balance
@@ -21,7 +23,13 @@ class Card
 
     def deduct(payment_amount)
         @balance -= payment_amount
-    end     
+    end  
+    
+        
+
+
+
+        
 
 
 
