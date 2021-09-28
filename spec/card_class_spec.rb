@@ -1,4 +1,4 @@
-require 'card'
+require 'card_class'
 
 RSpec.describe Card do
     before(:each) do
@@ -16,6 +16,10 @@ RSpec.describe Card do
 
     it "throw error if limit of £90 is exceeded" do
         expect(@my_oystercard_a.top_up(85)). to eq "error-balance cannot exceed £90"
+    end
+
+    it "deduct payment from my balance" do
+        expect(@my_oystercard_a.deduct(5)). to eq (5)
     end
     
 

@@ -19,6 +19,10 @@ class Card
 
     end
 
+    def deduct(payment_amount)
+        @balance -= payment_amount
+    end     
+
 
 
 
