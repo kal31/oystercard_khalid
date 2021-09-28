@@ -12,4 +12,5 @@ describe Card do
         top_up_value = 7
         expect(card_test.top_up(top_up_value)).to eq(card_test.balance)
     end
+    it "has_a_credit_limit"
 end
