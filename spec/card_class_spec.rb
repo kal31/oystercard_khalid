@@ -25,11 +25,14 @@ RSpec.describe Card do
         expect(@my_oystercard_a.deduct(5)). to eq (5)
     end
     
-    it "throws an error if a card with insufficient balance is signed in" do
+    it "error when a card with insufficient balance is signed in" do
+    
+        expect(@my_oystercard_b.sign_into_barrier). to eq (false)
+    end
 
-        @my_oystercard_b.sign_in
-
-        expect(@my_oystercard_b.in_journey?). to eq (false)
+    it "sign in when a card has balance >= 1" do
+    
+        expect(@my_oystercard_a.sign_into_barrier). to eq (true)
     end
 
    

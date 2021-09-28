@@ -1,17 +1,13 @@
-require 'card_class'
-MINIMUM_BALANCE = 1
+
+
 class Barrier 
     def initialize
         @journey = false
     end    
 
     def sign_in
-        if @balance >= MINIMUM_BALANCE
-           @journey = true
-        else 
-            @journey = false
-          return
-        end 
+         @journey = true
+         return      
     end     
 
     def sign_out
@@ -23,8 +19,6 @@ class Barrier
         @journey 
     end     
     
-    
 
-    
     
 end     
