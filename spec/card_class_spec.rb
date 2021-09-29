@@ -1,5 +1,5 @@
 require 'card_class'
-require 'barrier_class'
+
 
 RSpec.describe Card do
     before(:each) do
@@ -27,13 +27,26 @@ RSpec.describe Card do
     
     it "error when a card with insufficient balance is trying to touch in" do
     
-        expect(@my_oystercard_b.touch_into_barrier). to eq (false)
+        expect(@my_oystercard_b.touch_in). to eq (false)
     end
 
     it "touch in when a card has balance >= 1" do
     
-        expect(@my_oystercard_a.touch_into_barrier). to eq (true)
+        expect(@my_oystercard_a.touch_in). to eq (true)
     end
+
+
+
+    it "touch in card on the barrier" do
+        @my_oystercard_a.touch_in
+        expect(@my_oystercard_a.in_journey?). to eq (true)
+    end
+
+    it "touch out card on the barrier" do
+        @my_oystercard_a.touch_out
+        expect(@my_oystercard_a.in_journey?). to eq (false)
+    end
+
 
    
 end

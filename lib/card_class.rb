@@ -1,5 +1,5 @@
 
-class Card < Barrier
+class Card 
 
     attr_reader :balance
     TOP_UP_LIMIT = 90
@@ -8,6 +8,7 @@ class Card < Barrier
 
     def initialize(starting_balance)
         @balance = starting_balance
+        @in_journey = false
         
     end
 
@@ -25,16 +26,15 @@ class Card < Barrier
 
     end
 
-    def touch_into_barrier
+    def touch_in
         if balance < MINIMUM_BALANCE
-            touch_out
+            @in_journey = false
             return in_journey?
         elsif balance >= MINIMUM_BALANCE
-            touch_in
+            @in_journey = true
             return in_journey?  
         end   
-        
-
+    
     end    
 
 
@@ -42,6 +42,19 @@ class Card < Barrier
     def deduct(payment_amount)
         @balance -= payment_amount
     end  
+
+  
+    
+
+    def touch_out
+        @in_journey = false
+        return
+    end  
+
+    def in_journey?
+        @in_journey 
+    end     
+    
     
         
 
