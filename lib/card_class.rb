@@ -1,14 +1,14 @@
 
 class Card 
 
-    attr_reader :balance , :MINIMUM_BALANCE 
+    attr_accessor :balance , :MINIMUM_BALANCE , :entry_station 
     TOP_UP_LIMIT = 90
     
 
     def initialize(starting_balance)
         @balance = starting_balance
-        @in_journey = false
         @MINIMUM_BALANCE = 1 
+        @entry_station = nil
         
     end
 
@@ -26,17 +26,10 @@ class Card
 
     end
 
-    def touch_in
+    def touch_in(station)
+        @entry_station = station
         raise "card balance is below minimum balance of £#{@MINIMUM_BALANCE} to touch in" unless balance >= @MINIMUM_BALANCE
-        @in_journey = true
-        return in_journey?     
-        # if balance < MINIMUM_BALANCE
-        #     @in_journey = false
-        #     return in_journey?
-        # elsif balance >= MINIMUM_BALANCE
-        #     @in_journey = true
-        #     return in_journey?  
-        # end   
+        return  
     
     end    
 
@@ -44,17 +37,23 @@ class Card
 
     def deduct(payment_amount)
         @balance -= payment_amount
-    end  
+    end 
+    private :deduct 
 
     
 
     def touch_out
-        @in_journey = false
+        @entry_station = nil
+        deduct(@MINIMUM_BALANCE)
         return
     end  
 
     def in_journey?
-        @in_journey 
+        if @entry_station != nil
+            true 
+        else
+            false  
+        end        
     end     
     
     
