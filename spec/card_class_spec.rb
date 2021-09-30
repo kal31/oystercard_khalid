@@ -1,4 +1,5 @@
 require 'card_class'
+require 'station_class'
 
 
 RSpec.describe Card do
@@ -7,6 +8,7 @@ RSpec.describe Card do
     #     @my_oystercard_b = Card.new(0)
     # end
     let(:my_oystercard) { Card.new(10) }
+    let(:new_station) { Station.new("Manchester",1) }
     let(:station) {double :station}
     
 
@@ -81,6 +83,12 @@ RSpec.describe Card do
 
         expect(my_oystercard.list_of_journeys).to eq [{"entry_station"=>"Manchester"}, {"exit_station"=>"Liverpool"}]
        
+    end  
+    
+    it "what zone a station is in" do 
+        
+        expect(new_station.zone).to eq 1
+
     end     
 
 
