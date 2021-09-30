@@ -50,12 +50,12 @@ RSpec.describe Card do
 
     it "touch out card on the barrier" do
         my_oystercard.touch_in(station)
-        my_oystercard.touch_out
+        my_oystercard.touch_out(station)
         expect(my_oystercard).not_to be_in_journey
     end
 
     it "deduct the minimum fair on touch out" do 
-        expect {my_oystercard.touch_out}.to change{my_oystercard.balance}.by(-1)
+        expect {my_oystercard.touch_out(station)}.to change{my_oystercard.balance}.by(-1)
     end  
     
     it "need to know station signed in from" do
@@ -65,14 +65,23 @@ RSpec.describe Card do
     
     end     
 
-    it "set station on card to nill" do
+    it "set station on card to nil" do
     
         my_oystercard.touch_in(station)
-        my_oystercard.touch_out
+        my_oystercard.touch_out(station)
         
         expect(my_oystercard.entry_station).to eq nil
     
     end 
+
+
+    it "should see my previous trips" do
+        my_oystercard.touch_in('Manchester')
+        my_oystercard.touch_out("Liverpool")
+
+        expect(my_oystercard.list_of_journeys).to eq [{"entry_station"=>"Manchester"}, {"exit_station"=>"Liverpool"}]
+       
+    end     
 
 
    
